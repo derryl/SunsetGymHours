@@ -1,0 +1,21 @@
+.flexbox( @direction: 'column' ) {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: @direction;
+    flex-direction: @direction;
+}
+
+.flex( @grow: 1, @shrink: 1, @basis: auto ) {
+    -webkit-flex: @arguments;
+    flex: @arguments;
+}
+
+.align-items( @basis: 'stretch' ) {
+    -webkit-align-items: @basis;
+    align-items: @basis;
+}
+
+.justify-content( @basis: 'center' ) {
+    -webkit-justify-content: @basis;
+    justify-content: @basis;
+}

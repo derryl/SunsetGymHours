@@ -1,0 +1,68 @@
+<head>
+   <title>Sunset Gym Schedule</title>
+   <meta name="format-detection" content="telephone=no" /> 
+   <meta name="apple-mobile-web-app-capable" content="yes" /> 
+   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+   <meta name="apple-mobile-web-app-title" content="Gym Hours">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+</head>
+
+<body class="loading">
+   <div class="loader">
+      <h2>Loading</h2>
+      <img class="spinner" src="spiffygif_30x30.gif"/>
+   </div>
+   <div class="wrapper">
+      {{> today}}
+      {{> week}}
+   </div>
+</body>
+
+<template name="today">
+<div class="today">
+   <!-- Today's date -->
+   <h3 class="upc">{{ dayName }}, {{todayDate}}</h3>
+   <!-- Hours today -->
+   <h2>
+   The gym is open today from
+      {{#each slots}}
+         {{#if firstItem}}
+            <span class="bold nobreak lc">{{prettyTime start}} - {{prettyTime end}}</span>
+         {{else}}
+             and <span class="bold nobreak lc">{{prettyTime start}} - {{prettyTime end}}</span>
+         {{/if}}
+         
+         <!-- {{#if index > 0}}, and {{/if}} {{start}} - {{end}} -->
+      {{/each}}</h2>
+      
+   <!-- <h2>Gym closed now? {{#if isGymClosedNow }}yes{{else}}naw{{/if}}</h2> -->
+</div>
+</template>
+
+
+<template name="week">
+   <div class="schedule">
+      {{#each days}}
+      <div class="day {{isTodayClass day}}">
+         <div class="day-name">{{day}}</div>
+         <div class="slots">
+            {{#if isGymClosed slots}}
+               <h2 class="gym-closed">closed</h2>
+            {{else}}
+               {{#each slots}}
+               <span class="slot" style="{{ slotRangeCSS start end }}">
+                  {{prettyTime start}} - {{prettyTime end}}
+               </span>
+               {{/each}}
+            {{/if}}
+         </div>
+      </div>
+      {{/each}}
+   </div>
+</template>
+
+
+<template name="hello">
+   <button>Click Me</button>
+   <p>You've pressed the button {{counter}} times.</p>
+</template>
